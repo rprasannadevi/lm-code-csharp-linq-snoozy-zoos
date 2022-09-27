@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 using SnoozyZoos.Models;
 
 Console.WriteLine("Welcome to the Zookeeper's Zoo Analysis 🦁!");
@@ -39,14 +40,18 @@ Cuddles, 4
 Wheezy, 7
 */
 
-/*
-var challengeOneZooAnimals = // Write your LINQ Query here
+/*var challengeOneZooAnimals = from animal in zooAnimals
+                  where animal.Age > 3 && animal.Age < 8
+                select animal;*/
+
+var challengeOneZooAnimals = zooAnimals
+                            .Where( animal => animal.Age > 3 && animal.Age < 8);
 
 foreach (var zooAnimal in challengeOneZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -69,14 +74,21 @@ MUMBLE
 ASMODEUS
 */
 
-/*
-var challengeTwoZooAnimals = // Write your LINQ Query here
+
+/*var challengeTwoZooAnimals = from animal in zooAnimals
+                             where animal.Name.Length >= 6
+                             select animal.Name.ToUpper();*/
+
+var challengeTwoZooAnimals = zooAnimals
+                            .Where(animal => animal.Name.Length >= 6)
+                            .Select(animal => animal.Name.ToUpper());
+
 
 foreach (var zooAnimal in challengeTwoZooAnimals)
 {
     Console.WriteLine($"{zooAnimal}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -105,14 +117,19 @@ Dave, 3
 Amber, 2
 */
 
-/* 
-var challengeThreeZooAnimals = // Write your LINQ Query here
+
+/*var challengeThreeZooAnimals = from animal in zooAnimals
+                               orderby animal.Age descending
+                               select animal;*/
+
+var challengeThreeZooAnimals = zooAnimals
+                               .OrderByDescending(animal => animal.Age);
 
 foreach (var zooAnimal in challengeThreeZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -146,7 +163,22 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
-// var challengeFourZooAnimals = // Write your LINQ Query here
+/*var challengeFourZooAnimals = from animal in zooAnimals
+                              orderby animal.Location
+                              group animal by animal.Location into zooLocation
+                              select zooLocation; */
+var challengeFourZooAnimals = zooAnimals
+                                .OrderBy(animal => animal.Location)
+                                .GroupBy(animal => animal.Location);
+
+    
+foreach (var zooLocation in challengeFourZooAnimals)
+{
+    Console.WriteLine($"Zoo Location is: {zooLocation.Key}");
+    foreach(var animal in zooLocation)
+        Console.WriteLine($"Hello, my name is {animal.Name}");
+
+}
 
 // Can you write a nested foreach loop to create the expected output above?
 
