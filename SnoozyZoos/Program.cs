@@ -40,10 +40,12 @@ Cuddles, 4
 Wheezy, 7
 */
 
+//using LINQ Query - Version 1
 /*var challengeOneZooAnimals = from animal in zooAnimals
                   where animal.Age > 3 && animal.Age < 8
                 select animal;*/
 
+//using LINQ Query with Lambda - Version 2
 var challengeOneZooAnimals = zooAnimals
                             .Where( animal => animal.Age > 3 && animal.Age < 8);
 
@@ -74,11 +76,12 @@ MUMBLE
 ASMODEUS
 */
 
-
+//using LINQ Query - Version 1
 /*var challengeTwoZooAnimals = from animal in zooAnimals
                              where animal.Name.Length >= 6
                              select animal.Name.ToUpper();*/
 
+//using LINQ Query with Lambda - Version 2
 var challengeTwoZooAnimals = zooAnimals
                             .Where(animal => animal.Name.Length >= 6)
                             .Select(animal => animal.Name.ToUpper());
@@ -117,11 +120,12 @@ Dave, 3
 Amber, 2
 */
 
-
+//using LINQ Query - Version 1
 /*var challengeThreeZooAnimals = from animal in zooAnimals
                                orderby animal.Age descending
                                select animal;*/
 
+//using LINQ Query with Lambda - Version 2
 var challengeThreeZooAnimals = zooAnimals
                                .OrderByDescending(animal => animal.Age);
 
@@ -163,10 +167,13 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
+//using LINQ Query - Version 1
 /*var challengeFourZooAnimals = from animal in zooAnimals
                               orderby animal.Location
                               group animal by animal.Location into zooLocation
                               select zooLocation; */
+
+//using LINQ Query with Lambda - Version 2
 var challengeFourZooAnimals = zooAnimals
                                 .OrderBy(animal => animal.Location)
                                 .GroupBy(animal => animal.Location);
@@ -176,7 +183,7 @@ foreach (var zooLocation in challengeFourZooAnimals)
 {
     Console.WriteLine($"Zoo Location is: {zooLocation.Key}");
     foreach(var animal in zooLocation)
-        Console.WriteLine($"Hello, my name is {animal.Name}");
+        Console.WriteLine($"\t Hello, my name is {animal.Name}");
 
 }
 
